@@ -1,5 +1,15 @@
-from starlette.config import Config
+from pydantic import BaseSettings
 
-config = Config(".env")
 
-DB_URL = config("APP_DB_URL", cast=str, default="")
+class Settings(BaseSettings):
+    db_url: str = "default"
+
+    class Config:
+        env_prefix = ""
+        case_sentive = False
+        env_file = ".env"
+        env_file_encoding = "utf-8"
+
+
+settings = Settings()
+DB_URL = settings.db_url

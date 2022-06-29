@@ -134,3 +134,4 @@ dmypy.json
 # DB files
 *.db
 *.sqlite
+pg_data/
