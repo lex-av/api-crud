@@ -24,8 +24,8 @@ class UserInput(BaseModel):
     is_company: bool = False
 
     @validator("password_confirm")
-    def password_match(cls, pwd_value, model_values, **kwargs):
-        if "password" in model_values and pwd_value != model_values["password"]:
+    def password_match(cls, value, values):
+        if "password" in values and value != values["password"]:
             raise ValueError("paswords don't match")
         else:
-            return pwd_value
+            return value
