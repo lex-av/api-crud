@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from src.db.base import database
-from src.endpoints import endpoint_users
+from src.endpoints import endpoint_auth, endpoint_users
 
 app = FastAPI(
     title="EDU API",
@@ -8,6 +8,7 @@ app = FastAPI(
     version="1.0.0",
 )
 app.include_router(endpoint_users.router, prefix="/users", tags=["users"])
+app.include_router(endpoint_auth.router, prefix="/login", tags=["login"])
 
 
 @app.on_event("startup")
