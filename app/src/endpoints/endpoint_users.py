@@ -14,6 +14,11 @@ async def read_users(users: UserRepository = Depends(get_user_repo), limit: int 
     return await users.get_all(limit=limit, skip=skip)
 
 
-@router.post("/", response_model=UserOut)
+@router.post("/create", response_model=UserOut)
 async def create_user(user: UserInput, users: UserRepository = Depends(get_user_repo)):
     return await users.create(user_in=user)
+
+
+@router.put("/update", response_model=UserOut)
+async def update_user(id: int, user: UserInput, users: UserRepository = Depends(get_user_repo)):
+    return await users.update(id_upd=id, user_in=user)
